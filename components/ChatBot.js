@@ -4,10 +4,10 @@ import { data } from '@/data';
 
 export default function ChatBot() {
     const [exchanges, setExchanges] = useState([]);
+    const [currentExchange, setCurrentExchange] = useState(null);
     const [stocks, setStocks] = useState([]);
     const [selectedStockName, setSelectedStockName] = useState(''); 
     const [stockPrice, setStockPrice] = useState('');
-    const [currentExchange, setCurrentExchange] = useState(null);
 
     // Displaying the stock exchange options on page load
     useEffect(() => {
