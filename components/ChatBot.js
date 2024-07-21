@@ -104,7 +104,7 @@ export default function ChatBot() {
                 {/* This is the window that displays the selected stock's price */}
                 {stockPrice && (
                     <div className="bg-white border border-blue-200 shadow-lg rounded-lg max-w-xl ">
-                        <div className="text-center text-xl text-gray-700 ">
+                        <div className="text-center text-lg text-gray-700 ">
                             <p className='text-gray-700 bg-blue-100 p-2 pl-4 rounded-t-md'>{stockPrice}</p>
                             <div className="">
                                 <button
