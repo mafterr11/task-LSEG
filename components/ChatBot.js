@@ -25,7 +25,7 @@ export default function ChatBot() {
     };
 
     const fetchPrice = (stock) => {
-        setStockPrice(`The price of ${stock.stockName} is ${stock.price}`);
+        setStockPrice(`Stock price of ${stock.stockName} is ${stock.price}. Please select an option.`);
     };
 
     const resetToMainMenu = () => {
@@ -35,67 +35,78 @@ export default function ChatBot() {
     };
 
     return (
-        <div className=" bg-gray-100">
+        <div className="h-full w-full pb-20">
             <header className="bg-blue-600 text-white text-center py-4">
                 <h1 className="text-2xl font-bold">LSEG Chatbot</h1>
             </header>
-            <main className="max-w-3xl mx-auto mt-6">
-                <div className="bg-white p-6 shadow-lg rounded-lg">
-                    {!currentExchange && (
-                        <div id="exchange-menu" className="space-y-3">
-                            <p className="text-gray-700 mb-4">Hello! Welcome to LSEG. I`m here to help you.</p>
-                            <p className="text-gray-700 mb-2">Please select a Stock Exchange.</p>
-                            {exchanges.map(exchange => (
+            <main className="mt-6 flex flex-col gap-y-5 w-[90%] mx-auto">
+                <p className="text-gray-700 mb-2 bg-blue-100 p-4 rounded-md max-w-xl ">Hello! Welcome to LSEG. I`m here to help you.</p>
+                <div className="bg-white border border-blue-200 shadow-lg rounded-lg max-w-xl ">
+                    <div>
+                        <p className="text-gray-700 bg-blue-100 p-2 pl-4 rounded-t-md">Please select a Stock Exchange.</p>
+                        {exchanges.map(exchange => (
+                            <div key={exchange.code} className='hover:bg-blue-100 border-blue-100 transition duration-500'>
                                 <button
-                                    key={exchange.code}
                                     onClick={() => fetchStocks(exchange.code)}
-                                    className="block w-full p-3 bg-blue-100 text-blue-700 font-semibold rounded hover:bg-blue-200 transition duration-300"
+                                    className="block hover:scale-[1.05] w-full py-4 border-t  text-neutral-600 font-semibold  transition duration-300"
                                 >
                                     {exchange.stockExchange}
                                 </button>
-                            ))}
-                        </div>
-                    )}
-                    {currentExchange && !stockPrice && (
-                        <div id="stock-menu" className="space-y-3">
-                            <p className="text-gray-700 mb-2">Please select a stock.</p>
+                            </div>
+
+                        ))}
+                    </div>
+                </div>
+                {currentExchange && (
+                    <p className='self-end p-4 bg-gray-200 rounded-md'>{currentExchange}</p>
+                )}
+                {currentExchange && (
+                    <div className="bg-white border border-blue-200 shadow-lg rounded-lg max-w-xl ">
+                        <div>
+                            <p className="text-gray-700 bg-blue-100 p-2 pl-4 rounded-t-md">Please select a stock.</p>
                             {stocks.map(stock => (
-                                <button
-                                    key={stock.code}
-                                    onClick={() => fetchPrice(stock)}
-                                    className="block w-full p-3 bg-green-100 text-green-700 font-semibold rounded hover:bg-green-200 transition duration-300"
-                                >
-                                    {stock.stockName}
-                                </button>
+                                <div key={stock.code} className='hover:bg-blue-100 border-blue-100 transition duration-500'>
+                                    <button
+                                        onClick={() => fetchPrice(stock)}
+                                        className="block hover:scale-[1.05] w-full py-4 border-t  text-neutral-600 font-semibold  transition duration-300"
+                                    >
+                                        {stock.stockName}
+                                    </button>
+                                </div>
                             ))}
                             <button
                                 onClick={resetToMainMenu}
-                                className="block w-full p-3 bg-gray-100 text-gray-700 font-semibold rounded hover:bg-gray-200 transition duration-300 mt-4"
+                                className="block w-full p-3 bg-gray-100 text-gray-700 font-semibold rounded-b-md hover:bg-gray-200 transition duration-300 mt-4"
                             >
                                 Go Back
                             </button>
                         </div>
-                    )}
-                    {stockPrice && (
-                        <div id="stock-price" className="text-center text-xl text-gray-700 mt-4">
-                            <p>{stockPrice}</p>
-                            <div className="space-y-3 mt-4">
+                    </div>
+                )}
+                {stockPrice && (
+                    <p className='self-end p-4 bg-gray-200 rounded-md'>{stockPrice}</p>
+                )}
+                {stockPrice && (
+                    <div className="bg-white border border-blue-200 shadow-lg rounded-lg max-w-xl ">
+                        <div className="text-center text-xl text-gray-700 ">
+                            <p className='text-gray-700 bg-blue-100 p-2 pl-4 rounded-t-md'>{stockPrice}</p>
+                            <div className="">
                                 <button
                                     onClick={resetToMainMenu}
-                                    className="block w-full p-3 bg-gray-100 text-gray-700 font-semibold rounded hover:bg-gray-200 transition duration-300"
+                                    className="block w-full p-3 bg-gray-100 text-gray-700 font-semibold rounded-b-md hover:bg-gray-200 transition duration-300"
                                 >
                                     Main menu
                                 </button>
                                 <button
                                     onClick={() => setStockPrice('')}
-                                    className="block w-full p-3 bg-gray-100 text-gray-700 font-semibold rounded hover:bg-gray-200 transition duration-300"
+                                    className="block w-full p-3 bg-gray-100 text-gray-700 font-semibold rounded-b-md hover:bg-gray-200 transition duration-300"
                                 >
                                     Go Back
                                 </button>
                             </div>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </main>
         </div>
     );
