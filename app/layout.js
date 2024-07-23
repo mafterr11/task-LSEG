@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${nunito_sans.className} flex h-auto w-screen items-center justify-center bg-gray-50`}
+        className={`${nunito_sans.className}  h-auto w-screen bg-gray-50`}
       >
         {children}
       </body>
