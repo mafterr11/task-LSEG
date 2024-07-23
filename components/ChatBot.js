@@ -3,17 +3,29 @@ import { useState, useEffect } from "react";
 import { data } from "@/data";
 
 export default function ChatBot() {
+  //exchanges = all the stock exchanges mapped in the useEffect on page mount
+  //setExchanges in useEffect maps each item in data.js to a code and stockExchange
   const [exchanges, setExchanges] = useState([]);
+
+  //currentExchange = stock exchange selected by user
   const [currentExchange, setCurrentExchange] = useState(null);
+
+  //stocks = top 5 stocks for the selected stock exchange
   const [stocks, setStocks] = useState([]);
+
+  //selectedStock = stock selected by user (only for the right side of the screen display)
   const [selectedStockName, setSelectedStockName] = useState("");
+
+  //stockPrice = price of the selected stock
   const [stockPrice, setStockPrice] = useState("");
 
   // Displaying the stock exchange options on page load
   useEffect(() => {
     setExchanges(
       data.map((item) => ({
+        // Unique ID: item.code
         code: item.code,
+        // Name : item.name
         stockExchange: item.stockExchange,
       })),
     );
