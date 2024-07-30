@@ -33,6 +33,7 @@ export default function ChatBot() {
 
   // Fetch the stocks available for the selected stock exchange option above
   // Once a stock is selected, fetch its specific price
+  //exchangeCode receives the value of exchange.code
   const fetchStocks = (exchangeCode) => {
     const exchange = data.find((item) => item.code === exchangeCode);
     if (exchange) {
